@@ -1,0 +1,21 @@
+CREATE TABLE application (
+	id INT(10) unsigned NOT NULL AUTO_INCREMENT,
+	name VARCHAR(128) NOT NULL DEFAULT '',
+	email VARCHAR(30),
+	year YEAR(4),
+	gender VARCHAR(10),
+	kon INT(5),
+	bio TEXT,
+	contr_check BOOLEAN,
+	PRIMARY KEY(id)
+	);
+  
+CREATE TABLE Superpowers(
+	id INT(10) unsigned NOT NULL AUTO_INCREMENT,
+	name VARCHAR(128),
+	PRIMARY KEY(id)
+	);
+
+SELECT * FROM application;
+SELECT * FROM Superpowers;
+SELECT application.*, Superpowers.*     FROM application     LEFT JOIN Superpowers on application.id = Superpowers.id;
