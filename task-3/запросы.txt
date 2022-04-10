@@ -6,7 +6,6 @@ CREATE TABLE application (
 	gender VARCHAR(10),
 	kon INT(5),
 	bio TEXT,
-	contr_check BOOLEAN,
 	PRIMARY KEY(id)
 	);
   
