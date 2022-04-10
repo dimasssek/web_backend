@@ -80,7 +80,7 @@ $db = new PDO('mysql:host=localhost;dbname=u47569', $user, $pass, array(PDO::ATT
 // Подготовленный запрос. Не именованные метки.
 
 try {
-  $stmt = $db->prepare("INSERT INTO application SET name = ?, email = ?, year = ?, gender = ?, kon = ?, bio = ?, contr_check = ?");
+  $stmt = $db->prepare("INSERT INTO application SET name = ?, email = ?, year = ?, gender = ?, kon = ?, bio = ?");
   $stmt -> execute(array(
 		$_POST['name'],
         $_POST['email'],
@@ -88,7 +88,6 @@ try {
         $_POST['gender'],
         $_POST['kon'],
         $_POST['bio'],
-		$_POST[true],
 	));
 	
   $stmt = $db->prepare("INSERT INTO Superpowers SET name = ?");
