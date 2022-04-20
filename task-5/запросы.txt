@@ -13,8 +13,7 @@ CREATE TABLE application5 (
 
 CREATE TABLE Superpowers5(
     id INT(10) unsigned NOT NULL,
-    superpowers INT(10),
-    PRIMARY KEY(id)
+    superpowers INT(10)
     );
    
 CREATE TABLE SuperDef(
