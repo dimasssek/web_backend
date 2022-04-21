@@ -18,7 +18,7 @@ CREATE TABLE users5(
 
 CREATE TABLE Superpowers5(
     id INT(10) unsigned NOT NULL,
-    superpowers VARCHAR(64)
+    superpowers INT(10)
     );
    
 CREATE TABLE SuperDef(
@@ -27,7 +27,7 @@ CREATE TABLE SuperDef(
     );
     
  INSERT INTO SuperDef VALUES 
-    ('1','бессмертие'),
-    ('2','прохождение сквозь стены'),
-    ('3','левитация')
+    ('1','Бессмертие'),
+    ('2','Прохождение сквозь стены'),
+    ('3','Левитация')
     ;
