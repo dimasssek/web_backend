@@ -19,6 +19,14 @@ $db_pass = '3312824';  // Пароль БД
 // В суперглобальном массиве $_SERVER PHP сохраняет некторые заголовки запроса HTTP
 // и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if(isset($_GET['do'])&&$_GET['do'] == 'logout'){
+    session_start();    
+    session_unset();
+    session_destroy();
+    //setcookie("PHPSESSID", "", 1);
+    setcookie ("PHPSESSID", "", time() - 3600, '/');
+    header("Location: index.php");
+    exit;}
 ?>
 
 <form action="" method="post">
@@ -63,3 +71,4 @@ else {
   }
   header('Location: ./');
 }
+
