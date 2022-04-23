@@ -1,0 +1,7 @@
+//на случай, если админов несколько
+CREATE TABLE admin(
+    id INT(10) unsigned NOT NULL AUTO_INCREMENT,
+    login VARCHAR(128),
+    pass VARCHAR(255),
+    PRIMARY KEY(id)
+    );
