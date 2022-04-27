@@ -5,3 +5,7 @@ CREATE TABLE admin(
     pass VARCHAR(255),
     PRIMARY KEY(id)
     );
+ 
+INSERT INTO admin VALUES(
+    ('admin', 'admin');
+);
