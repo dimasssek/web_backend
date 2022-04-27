@@ -6,6 +6,4 @@ CREATE TABLE admin(
     PRIMARY KEY(id)
     );
  
-INSERT INTO admin VALUES(
-    ('admin', 'admin');
-);
+INSERT INTO admin VALUES ('admin', 'admin');
