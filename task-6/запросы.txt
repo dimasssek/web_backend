@@ -7,3 +7,19 @@ CREATE TABLE admin(
     );
  
 INSERT INTO admin VALUES ('admin', 'admin');
+
+//айди способностей
+SELECT  application6.*,
+        Superpowers6.superpowers as power
+FROM application6
+LEFT JOIN Superpowers6
+ON application6.id=Superpowers6.id;
+
+//названия способностей
+SELECT  application6.*, 
+        SuperDef.name as power
+FROM application6
+INNER JOIN Superpowers6
+    on application6.id = Superpowers6.id
+INNER JOIN SuperDef 
+    on Superpowers6.superpowers = SuperDef.id;
