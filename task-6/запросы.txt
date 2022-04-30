@@ -31,9 +31,16 @@ FROM Superpowers6
 LEFT JOIN SuperDef
 ON Superpowers6.superpowers=SuperDef.id;
 
-//статистика по способностям
+//статистика по способностям(index)
 SELECT superpowers as superpower, COUNT(superpowers) as number_of_users
             FROM Superpowers6 
+            GROUP BY superpowers;
+
+//статистика по способностям(names)
+SELECT SuperDef.name as superpower, COUNT(superpowers) as number_of_users
+            FROM Superpowers6 
+            LEFT JOIN SuperDef
+            ON Superpowers6.superpowers=SuperDef.id
             GROUP BY superpowers;
 
 //вывод всей инфы в одну таблицу
