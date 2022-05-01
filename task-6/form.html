@@ -22,7 +22,7 @@
 	?>
 	<div class="container">
 	<a href="login.php">Войти</a><br>
-	<a href="auth.php">Войти в панель администратора</a>
+	<a href="admin.php">Войти в панель администратора</a>
 		<form action="" method="POST">
 			<p><label for="name">Имя</label>
 			<input type="text" name="name" <?php if (!empty($errors['name'])) print 'class="error"'; ?> <?php if(empty($errors['name'])&&!empty($values['name'])) print 'class="ok"';?> value="<?php isset($_COOKIE['name_error'])? print trim($_COOKIE['name_error']) : print $values['name']; ?>"> </p>
