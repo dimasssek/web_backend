@@ -16,11 +16,22 @@
 // PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
 // Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы.
 
-//!!!!!!!!!!!!!!!!!!!!!достать пароль из бд
+$db_user = 'u47569';   // Логин БД
+$db_pass = '3312824';
+$db = new PDO('mysql:host=localhost;dbname=u47569', $db_user, $db_pass, array(
+    PDO::ATTR_PERSISTENT => true
+));
+$login = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : '';
+$stmt = $db->prepare("SELECT * FROM admin WHERE login = ?");
+      $stmt->execute(array(
+        $login
+      ));
+$admin_pass = $stmt->fetch();
+
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != 'admin' ||
-    $_SERVER['PHP_AUTH_PW']!='admin'){
+    !password_verify($_SERVER['PHP_AUTH_PW'], $admin_pass['pass'])){
       header('HTTP/1.1 401 Unanthorized');
       header('WWW-Authenticate: Basic realm="My site"');
       print('<h1>401 Требуется авторизация</h1>');
@@ -29,11 +40,6 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.<br>');
 
-$db_user = 'u47569';   // Логин БД
-$db_pass = '3312824';
-$db = new PDO('mysql:host=localhost;dbname=u47569', $db_user, $db_pass, array(
-    PDO::ATTR_PERSISTENT => true
-));
 function show_tables($db){
   $sql = 'SELECT  application6.*, 
                     SuperDef.name as power,
@@ -50,7 +56,6 @@ function show_tables($db){
   <caption>users' data</caption> 
     <tr><th>id</th><th>name</th><th>e-mail</th><th>year</th><th>gender</th><th>kon</th><th>bio</th><th>superpower</th><th>login</th><th colspan="3">action</th></tr><!--ряд с ячейками заголовков-->
   <?php
-  //$id=($db->query($sql))->fetch()['0'];$id_next=$id+1;$id_prev=$id-1;
 	  foreach ($db->query($sql, PDO::FETCH_ASSOC) as $row) {
       print('<tr>');
       foreach ($row as $v){
@@ -161,7 +166,6 @@ function errors(){
       $errors = TRUE;
     }
     if ($errors) {
-     // $messages[]='Не удалось добавить пользователя! Проверьте введенные данные';
       return true;
     }
     else{
@@ -176,7 +180,6 @@ function delete_user($db, $del){
     $sth->execute(array($del));
     $sth = $db->prepare("DELETE FROM users6 WHERE id = ?");
     $sth->execute(array($del));
-    //$messages[]='Пользователь удален';
   }
   catch(PDOException $e){
     print('Error: ' . $e->getMessage());
@@ -231,7 +234,6 @@ function add_user($db){
     print('Error: ' . $e->getMessage());
     exit();
   }
-  //$messages[]='Пользователь добавлен';
 }
 function edit_user($db, $edit){
   try {
@@ -276,21 +278,9 @@ function edit_user($db, $edit){
     print('Error: ' . $e->getMessage());
     exit();
   }
-  //$messages[]='Данные пользователя изменены';
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
-  /*if(isset($_GET['adm'])&&$_GET['adm']=='unauth'){
-    if (empty($_SERVER['PHP_AUTH_USER']) ||
-    empty($_SERVER['PHP_AUTH_PW']) ||
-    $_SERVER['PHP_AUTH_USER'] != 'admin' ||
-    $_SERVER['PHP_AUTH_PW']!='admin'){
-      header('HTTP/1.1 401 Unanthorized');
-      header('WWW-Authenticate: Basic realm="My site"');
-      print('<h1>401 Требуется авторизация</h1>');
-      exit();
-    }
-  }*/
   show_tables($db);
   if(isset($_GET['act'])&&$_GET['act']=='edit_article'){
     ?><form action="" method="post">
@@ -319,10 +309,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     <p><button type="submit" value="send">Ок</button></p>
     </form>
     <?php
-    } 
-  //выкидываем заголовок и здесь, чтобы окно аутентификации появлялось при каждом вызове скрипта
-  //header('HTTP/1.1 401 Unanthorized');
-
+    }
 }
 else{
   try {
