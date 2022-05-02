@@ -1,8 +1,5 @@
 <?php
 
-
-//  !!!!!!!!!!!!!!!!!!!! проверить еще раз заполнение полей !!!!!!!!!!!!!!!!
-
 /**
  * Файл login.php для не авторизованного пользователя выводит форму логина.
  * При отправке формы проверяет логин/пароль и создает сессию,
@@ -61,8 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if(isset($_GET['do'])&&$_GET['do'] == 'logout'){
     /*if(!empty($_SERVER['PHP_AUTH_USER'])&&!empty($_SERVER['PHP_AUTH_PW'])){
       unset($_SERVER['PHP_AUTH_USER']);
-      unset($_SERVER['PHP_AUTH_PW']);
-    }*/
+      unset($_SERVER['PHP_AUTH_PW']);}*/
     session_start();    
     session_unset();
     session_destroy();
@@ -78,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
        <p><label for="new_pass">Новый пароль </label><input name="new_pass" /></p>
        <input type="submit" value="Изменить" />
      </form>
-    <?php
+    <?php 
   }
   else{
     ?>
