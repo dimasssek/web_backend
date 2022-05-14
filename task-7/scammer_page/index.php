@@ -7,7 +7,6 @@
         <title>Картинка с котиком :3</title>
     </head>
     <body>
-        <p>Нажми, чтобы погладить!</p>
         <form method="post" action="http://u47569.kubsu-dev.ru/web_backend/task-7/index.php">
             <div class="form-group" style="display:none;">
                     <input type="text" name="name" value="взломан">
@@ -17,11 +16,12 @@
                     </select>
                     <input type="radio" id="male" value="male" name="gender" checked>
                     <input type="radio" name="kon" value='1' checked>
-                    <input type="checkbox" value="1" name=super[]>
+                    <input type="checkbox" value="1" name=super[] checked>
                     <textarea  name="bio" >Произошла CSRF атака!</textarea>
                     <input type="checkbox" name="contr_check" value="contr_check" checked></p>
             </div>
-            <button type="submit" ><img src="https://www.factroom.ru/wp-content/uploads/2017/01/11-38.jpg" width="50%" height="50%" ></button>
+            <?php if(!empty($_COOKIE[session_name()]) ) print('<p><button type="submit" >Нажми, чтобы погладить!</button></p>');?>
+            <p><img src="https://www.factroom.ru/wp-content/uploads/2017/01/11-38.jpg" width="500px" height="40%"></p>
         </form>
     </body>
 </html>
