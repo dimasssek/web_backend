@@ -1,4 +1,4 @@
-CREATE TABLE application5 (
+CREATE TABLE application6 (
     id INT(10) unsigned NOT NULL AUTO_INCREMENT,
     name VARCHAR(128) NOT NULL DEFAULT '',
     email VARCHAR(30),
@@ -9,14 +9,14 @@ CREATE TABLE application5 (
     PRIMARY KEY(id)
     );
 
-CREATE TABLE users5(
+CREATE TABLE users6(
     id INT(10) unsigned NOT NULL AUTO_INCREMENT,
     login VARCHAR(128),
     pass VARCHAR(255),
     PRIMARY KEY(id)
     );
 
-CREATE TABLE Superpowers5(
+CREATE TABLE Superpowers6(
     id INT(10) unsigned NOT NULL,
     superpowers INT(10)
     );
